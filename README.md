@@ -16,7 +16,7 @@ This first example enables two services, runs a bunch of commands, and adds two 
 
 ```terraform
 module "cloudinit" {
-  source  = "app.terraform.io/explosion/core/aws//modules/cloud_init"
+  source  = "tedivm/cloudinit/general"
   version = "~> 1.0
 
   services = ["consul", "nomad"]
@@ -73,7 +73,7 @@ locals {
 
 
 module "cloudinit" {
-  source  = "app.terraform.io/explosion/core/aws//modules/cloud_init"
+  source  = "tedivm/cloudinit/general"
   version = "~> 1.0
 
   packages = ["unzip", "jq"]
