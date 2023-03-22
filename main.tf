@@ -34,23 +34,18 @@ locals {
   )
 
   cloud_config = yamlencode(
-    merge(
-      # Get defaults from file
-      yamldecode(templatefile("${path.module}/templates/cloud-config.yml", {})),
-
-      # Build custom config from input and local variables
-      {
-        "write_files" : concat(local.script_files, local.config_files, var.write_files),
-        "runcmd" : local.runcmd,
-        "bootcmd" : var.bootcmd,
-        "mounts" : var.mounts,
-        "packages" : var.packages,
-        "growpart" : {
-          "mode" : "auto",
-          "devices" : concat(["/"], var.grow_partition_devices)
-        },
-      }
-    )
+    # Build custom config from input and local variables
+    {
+      "write_files" : concat(local.script_files, local.config_files, var.write_files),
+      "runcmd" : local.runcmd,
+      "bootcmd" : var.bootcmd,
+      "mounts" : var.mounts,
+      "packages" : var.packages,
+      "growpart" : {
+        "mode" : "auto",
+        "devices" : concat(["/"], var.grow_partition_devices)
+      },
+    }
   )
 }
 
