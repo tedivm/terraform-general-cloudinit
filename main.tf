@@ -74,3 +74,4 @@ data "cloudinit_config" "main" {
     }
   }
 }
+
