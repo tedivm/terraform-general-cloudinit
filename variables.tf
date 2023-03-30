@@ -41,7 +41,7 @@ variable "user_services" {
 variable "packages" {
   description = "A list of packages to be installed. These packages must exist in the systems software repository, or have a repository configured."
   type        = list(string)
-  default     = ["nomad", "consul", "docker-ce", "docker-ce-cli", "containerd.io"]
+  default     = []
 }
 
 variable "package_update" {
