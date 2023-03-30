@@ -1,9 +1,3 @@
-
-terraform {
-  experiments = [module_variable_optional_attrs]
-}
-
-
 #
 # Commands
 #
@@ -47,7 +41,25 @@ variable "user_services" {
 variable "packages" {
   description = "A list of packages to be installed. These packages must exist in the systems software repository, or have a repository configured."
   type        = list(string)
-  default     = ["nomad", "consul", "docker-ce", "docker-ce-cli", "containerd.io"]
+  default     = []
+}
+
+variable "package_update" {
+  description = "Update apt database on first boot (run 'apt-get update'). Happens before upgrade or a package install."
+  type = bool
+  default = false
+}
+
+variable "package_upgrade" {
+  description = "Upgrade packages. Happens before a package install."
+  type = bool
+  default = false
+}
+
+variable "package_reboot_if_required" {
+  description = "Reboot the system if required by presence of /var/run/reboot-required"
+  type = bool
+  default = false
 }
 
 
@@ -102,3 +114,4 @@ variable "parts" {
     }
   ))
 }
+
