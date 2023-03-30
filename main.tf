@@ -41,6 +41,9 @@ locals {
       "bootcmd" : var.bootcmd,
       "mounts" : var.mounts,
       "packages" : var.packages,
+      "package_update": var.package_update,
+      "package_upgrade": var.package_upgrade,
+      "package_reboot_if_required": var.package_reboot_if_required,
       "growpart" : {
         "mode" : "auto",
         "devices" : concat(["/"], var.grow_partition_devices)
@@ -67,10 +70,10 @@ data "cloudinit_config" "main" {
   dynamic "part" {
     for_each = var.parts
     content {
-      content      = parts.value["content"]
-      filename     = try(parts.value["filename"], null)
-      content_type = try(parts.value["content_type"], null)
-      merge_type   = try(parts.value["merge_type"], null)
+      content      = part.value["content"]
+      filename     = try(part.value["filename"], null)
+      content_type = try(part.value["content_type"], null)
+      merge_type   = try(part.value["merge_type"], null)
     }
   }
 }

@@ -44,6 +44,24 @@ variable "packages" {
   default     = ["nomad", "consul", "docker-ce", "docker-ce-cli", "containerd.io"]
 }
 
+variable "package_update" {
+  description = "Update apt database on first boot (run 'apt-get update'). Happens before upgrade or a package install."
+  type = bool
+  default = false
+}
+
+variable "package_upgrade" {
+  description = "Upgrade packages. Happens before a package install."
+  type = bool
+  default = false
+}
+
+variable "package_reboot_if_required" {
+  description = "Reboot the system if required by presence of /var/run/reboot-required"
+  type = bool
+  default = false
+}
+
 
 #
 # Files

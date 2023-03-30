@@ -75,6 +75,8 @@ locals {
 module "cloudinit" {
   source  = "tedivm/cloudinit/general"
   version = "~> 1.0
+  
+  package_update = true
 
   packages = ["unzip", "jq"]
 
